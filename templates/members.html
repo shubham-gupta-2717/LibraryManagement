@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Members{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-4">Members List</h1>
+<table class="table table-striped table-bordered table-hover rounded shadow-sm mt-3">
+<thead class="table-dark">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Membership Date</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+{% for member in members %}
+<tr>
+<td>{{ member[0] }}</td>
+<td>{{ member[1] }}</td>
+<td>{{ member[2] }}</td>
+<td>{{ member[3] }}</td>
+<td>{{ member[4] }}</td>
+<td>
+  <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMemberModal{{ member[0] }}">Delete</button>
+
+  <div class="modal fade" id="deleteMemberModal{{ member[0] }}" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete "{{ member[1] }}"?
+        </div>
+        <div class="modal-footer">
+          <form action="/delete_member/{{ member[0] }}" method="POST">
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+          </form>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

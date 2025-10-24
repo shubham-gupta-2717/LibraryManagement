@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Books{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-4">Books List</h1>
+<table class="table table-striped table-bordered table-hover rounded shadow-sm mt-3">
+<thead class="table-dark">
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Author</th>
+<th>Publisher</th>
+<th>Year</th>
+<th>Genre</th>
+<th>Copies</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+{% for book in books %}
+<tr>
+<td>{{ book[0] }}</td>
+<td>{{ book[1] }}</td>
+<td>{{ book[2] }}</td>
+<td>{{ book[3] }}</td>
+<td>{{ book[4] }}</td>
+<td>{{ book[5] }}</td>
+<td>{{ book[6] }}</td>
+<td>
+  <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteBookModal{{ book[0] }}">Delete</button>
+
+  <div class="modal fade" id="deleteBookModal{{ book[0] }}" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete "{{ book[1] }}"?
+        </div>
+        <div class="modal-footer">
+          <form action="/delete_book/{{ book[0] }}" method="POST">
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+          </form>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
