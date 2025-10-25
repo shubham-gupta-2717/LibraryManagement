@@ -1,6 +1,6 @@
 # Library Management System
 
-A Flask-based Library Management System integrated with Oracle Database. It allows managing books, members, borrowing, returning, and deleting records. The project features a Bootstrap-based responsive UI with confirmation modals for critical actions.
+A Flask-based Library Management System integrated with Oracle Database. It allows managing books, members, borrowing, returning, and deleting records. The project features a Bootstrap-based responsive UI with confirmation modals for critical actions.The frontend of the whole project is made using ChatGpt. 
 
 ---
 
